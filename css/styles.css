@@ -1,0 +1,49 @@
+body {
+	margin:0;
+    padding:0;
+    background: #141b23 url(../images/background.png) no-repeat 100% 0;
+    color: #fff;
+    font-family: Franklin Gothic;
+}
+#wrapper {
+	max-width: 1360px;
+	margin: auto;
+}
+#section {
+	 margin: 70px 140px;
+     max-width: 560px;
+}
+header {
+	padding: 20px 0;
+}
+nav a {
+	text-decoration: none;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	list-style-position: inside;
+	font: 15px, sans-serif;
+	padding: 10px;
+}
+
+.top-menu li {
+	display: inline-block;
+}
+
+.top-menu a {
+    color: #838C9A;
+    margin-right: 30px;
+}
+
+footer {
+    position: absolute;
+    bottom:0;
+    padding: 50px;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.2);
+  }
