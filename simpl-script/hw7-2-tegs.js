@@ -1,6 +1,7 @@
 
 setTimeout(countTags, 2000); 
 var obj = new Array();
+var objL = 0;
 
 function countTags(collection, stats) {
   
@@ -18,27 +19,30 @@ function printField(){
 
 
 function calculate(collection, stats){
-    var item,index,tagname;
-debugger;
+    var item,tagname;
+
     for (var i = 0; i < collection.length; i++) {
         item = collection[i];
         tagname = item.tagName;
-        index = obj.length;
+        
         var posichion;
         var isIncludes=false;
-        for (var i = 0; i < index; i++) {
-            if(obj[i].includes(tagname)){
+        for (var ii = 0; ii < objL; ii++) {
+            let newtag = obj[ii][0];
+            if(newtag == tagname){
                 isIncludes=true;
-                posichion = i;
+                posichion = ii;
                 break;
             }
         }
         if(!isIncludes) {
-            obj[index] = new Array();
-            obj[index][0] = tagname;
-            obj[index][1] = 0;
+            obj[objL] = new Array();
+            obj[objL][0] = tagname;
+            obj[objL][1] = 0;
+            objL++;
         }else { 
-            obj[posichion][1] = +obj[posichion][1]++;
+            var count = obj[posichion][1] + 1;
+            obj[posichion][1] = count;
         }
 
         if(item.children.length > 0){
