@@ -9,21 +9,55 @@ document.addEventListener('DOMContentLoaded', function () {
     d3.addEventListener('click', add);
 
     document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('keydown', keyMouseMove);
 });
 
-function changeColor(){
-    if(this.tagName == 'DIV' && this.style.backgroundColor != "green"){
-        
-        this.style.backgroundColor = "green";
-    }
+function keyMouseMove(e) {
+   var s1;
+   s1 = document.getElementById('s1');
+ 
+    switch (e.keyCode) {
+        case 38:
+        s1.style.top = parseInt(s1.style.top)  - 20 + 'px';
+        s1.style.position = "absolute";
+            break;
+        case 40:
+        s1.style.top = parseInt(s1.style.top ) + 20 + 'px';
+        s1.style.position = "absolute";
+            break;
+        case 37:
+        s1.style.left = parseInt(s1.style.left ) - 20 + 'px';
+        s1.style.position = "absolute";
+            break;
+        case 39:
+        s1.style.left = parseInt(s1.style.left ) + 20 + 'px';
+        s1.style.position = "absolute";
+            break;
+        default:
+            break;
+    } 
+    checkColor();
 }
 
+function checkColor(){
+    let cursor = document.getElementById('s1');
+
+    let squareList = document.getElementsByTagName("div");
+    for (elem of squareList) {
+        if (parseInt(cursor.style.top) < (parseInt(elem.style.top) + 10)
+        && parseInt(cursor.style.top) > (parseInt(elem.style.top) - 10)
+        && parseInt(cursor.style.left) < (parseInt(elem.style.left) + 10)
+        && parseInt(cursor.style.left) > (parseInt(elem.style.left) - 10)) {
+            elem.style.backgroundColor = "green";
+        };
+    }
+}
 
 function onMouseMove(e) {
     let colorList = [];
     if(game){
         heavy(e);
-
+        checkColor();
         squareList = document.getElementsByTagName("div");
         for (element of squareList) {
             colorList.push(element.style.backgroundColor)
@@ -46,8 +80,8 @@ function heavy(e) {
     var s1;
     s1 = document.getElementById('s1');
   
-    s1.style.left = (e.clientX - 10) + 'px';
-    s1.style.top = (e.clientY - 10) + 'px';
+    s1.style.left = (e.clientX - 15) + 'px';
+    s1.style.top = (e.clientY - 15) + 'px';
 }
 
 function checkNumberInput() {
@@ -126,11 +160,6 @@ function add() {
         }
         addBlack();
         game = true;
-
-        var d4List = document.getElementsByTagName('div');
-        for (element of d4List) {
-            element.addEventListener('mouseenter', changeColor);
-        }
     }
 }
 
